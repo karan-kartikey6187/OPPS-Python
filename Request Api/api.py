@@ -10,9 +10,10 @@ class Search_by(Api_data):
         key=input("Please Enter Key: ")
         found=False
         for data in self.json_response["docs"]:
-            if data["key"]==key:
-                print(json.dumps(data,indent=4))
-                found=True
+            for item in data["editions"]["docs"]:
+                if item["key"]==key:
+                    print(json.dumps(data,indent=4))
+                    found=True
 
         if not found:
            print("No Record Found!")
